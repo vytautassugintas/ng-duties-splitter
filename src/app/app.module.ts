@@ -2,7 +2,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
-import {choresReducer} from './store/reducers/chores.reducer';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,9 @@ import {choresReducer} from './store/reducers/chores.reducer';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ chores: choresReducer })
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
